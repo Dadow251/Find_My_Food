@@ -17,14 +17,13 @@ public class MainActivity extends AppCompatActivity {
 
     /** Appelée lors d'un appui sur le bouton searchButton */
     public void search(View view) {
-        // Do something in response to button
+        // Appel à ListActivity
         Intent intent = new Intent(this, ListActivity.class);
-        /* Utilisation du texte contenu dans la searchBar
+        // Utilisation du texte contenu dans la searchBar
         EditText editText = (EditText) findViewById(R.id.searchBar);
         String message = editText.getText().toString();
         intent.putExtra(Intent.EXTRA_TEXT, message);
-        */
-        startActivity(intent);
 
+        startActivity(intent);
     }
 }
