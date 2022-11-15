@@ -14,10 +14,15 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ItemViewHolder> {
     List<FoodItem> dataList;
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
-        TextView txt;
+        TextView descriptionTxt;
+        TextView priceTxt;
+        TextView marketTxt;
+
         public ItemViewHolder(View itemView){
             super(itemView);
-            txt = (TextView) itemView.findViewById(R.id.txt);
+            descriptionTxt = (TextView) itemView.findViewById(R.id.descriptionTextView);
+            priceTxt = (TextView) itemView.findViewById(R.id.priceTextView);
+            marketTxt = (TextView) itemView.findViewById(R.id.marketTextView);
         }
     }
 
@@ -33,10 +38,9 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ItemViewHolder> {
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position){
-        String itemDisplay = dataList.get(position).getDescription() + " : "
-                            + dataList.get(position).getPrice() + " €  ("
-                            + dataList.get(position).getMarket() + ")";
-        holder.txt.setText(itemDisplay);
+        holder.descriptionTxt.setText(dataList.get(position).getDescription());
+        holder.priceTxt.setText(""+dataList.get(position).getPrice());
+        holder.marketTxt.setText(dataList.get(position).getMarket());
     }
 
     @Override
