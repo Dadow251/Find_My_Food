@@ -11,7 +11,7 @@ import java.util.Collections;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ItemViewHolder> {
 
-    List<String> dataList;
+    List<FoodItem> dataList;
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         TextView txt;
@@ -21,7 +21,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ItemViewHolder> {
         }
     }
 
-    public RVAdapter(List<String> data){
+    public RVAdapter(List<FoodItem> data){
         this.dataList = data;
     }
 
@@ -33,7 +33,10 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ItemViewHolder> {
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position){
-        holder.txt.setText(dataList.get(position));
+        String itemDisplay = dataList.get(position).getDescription() + " : "
+                            + dataList.get(position).getPrice() + " €  ("
+                            + dataList.get(position).getMarket() + ")";
+        holder.txt.setText(itemDisplay);
     }
 
     @Override
