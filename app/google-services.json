@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "839188762711",
+    "project_id": "find-my-food-a85a8",
+    "storage_bucket": "find-my-food-a85a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:839188762711:android:20b84a071c2147099c9312",
+        "android_client_info": {
+          "package_name": "fr.damiens.find_my_food"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "839188762711-1amqbmn2kpjkds0vsabsu92cbm5redjl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgi4-y4YoQS91vX5S4TuUv7BgLXcImDQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "839188762711-1amqbmn2kpjkds0vsabsu92cbm5redjl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
