@@ -20,9 +20,15 @@ public class ListActivity extends AppCompatActivity {
 
     void initData(){
         data = new ArrayList<FoodItem>();
-        data.add(new FoodItem("Tomate",1.20, "Carrefour"));
-        data.add(new FoodItem("Tomate",1.15, "Auchan"));
-        data.add(new FoodItem("Tomate",1.35, "Super U"));
+        data.add(new FoodItem("Tomate grappe",1.20, "Carrefour"));
+        data.add(new FoodItem("Tomate cerise",1.15, "Auchan"));
+        data.add(new FoodItem("Tomate allongée",1.35, "Super U"));
+        data.add(new FoodItem("Tomate coeur de boeuf",1.38, "E. Leclerc"));
+        data.add(new FoodItem("Tomate verte",1.07, "Intermarché"));
+        data.add(new FoodItem("Tomate noire",1.42, "Lidl"));
+        data.add(new FoodItem("Tomate cerise allongée",0.96, "Grand frais"));
+        data.add(new FoodItem("Tomate ronde",1.03, "Auchan"));
+        data.add(new FoodItem("Tomate jaune",1.12, "Super U"));
     }
 
     @Override
