@@ -1,25 +1,46 @@
 package fr.damiens.find_my_food;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    ArrayList<FoodItem> data;
-    RVAdapter rvAdapter;
-    TextView textView;
+    private RecyclerView recyclerView;
+    private ArrayList<FoodItem> data;
+    private RVAdapter rvAdapter;
+    private TextView textView;
+
+    private FirebaseFirestore database = FirebaseFirestore.getInstance();
+    private ArrayList<QueryDocumentSnapshot> documents;
 
     void initData(){
-        data = new ArrayList<FoodItem>();
+        data = new ArrayList<>();
+        documents = new ArrayList<>();
+        /*
         data.add(new FoodItem("Tomate grappe",1.20, "Carrefour"));
         data.add(new FoodItem("Tomate cerise",1.15, "Auchan"));
         data.add(new FoodItem("Tomate allongée",1.35, "Super U"));
@@ -29,6 +50,26 @@ public class ListActivity extends AppCompatActivity {
         data.add(new FoodItem("Tomate cerise allongée",0.96, "Grand frais"));
         data.add(new FoodItem("Tomate ronde",1.03, "Auchan"));
         data.add(new FoodItem("Tomate jaune",1.12, "Super U"));
+        */
+
+        database.collection("Aliments")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                documents.add(document);
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+        for(QueryDocumentSnapshot doc : documents)
+            Log.d(TAG, doc.getId() + " ==> " + doc.getData());
     }
 
     @Override

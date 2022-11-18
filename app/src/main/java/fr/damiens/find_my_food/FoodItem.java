@@ -2,9 +2,9 @@ package fr.damiens.find_my_food;
 
 public class FoodItem {
 
-    String description;
-    double price;
-    String market;
+    private String description;
+    private double price;
+    private String market;
 
     public FoodItem(String description, double price, String market){
         this.description = description;
