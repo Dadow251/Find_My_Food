@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ListActivity extends AppCompatActivity {
 
@@ -28,9 +29,6 @@ public class ListActivity extends AppCompatActivity {
     private ArrayList<FoodItem> data;
     private RVAdapter rvAdapter;
     private TextView textView;
-
-    private FirebaseDatabase db = FirebaseDatabase.getInstance();
-    private DatabaseReference dbRef = db.getReference();
 
     void initData() { // crée des données factices pour évaluer l'affichage
         data = new ArrayList<>();
@@ -51,6 +49,9 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        FirebaseDatabase db = FirebaseDatabase.getInstance("https://find-my-food-a85a8-default-rtdb.europe-west1.firebasedatabase.app/");
+        DatabaseReference dbRef = db.getReference("Aliments");
+
         textView = (TextView) findViewById(R.id.searchTextDisplay);
 
         recyclerView = (RecyclerView) findViewById(R.id.rv_search);
@@ -58,8 +59,10 @@ public class ListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
+//        ArrayList<String> stringList = new ArrayList<>();
+
         data = new ArrayList<>();
-        initData(); // données factices
+//        initData(); // données factices
 
         rvAdapter = new RVAdapter(this, data);
         recyclerView.setAdapter(rvAdapter);
@@ -74,9 +77,16 @@ public class ListActivity extends AppCompatActivity {
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    FoodItem foodItem = dataSnapshot.getValue(FoodItem.class);
+                Toast.makeText(ListActivity.this, "onDataChange", Toast.LENGTH_SHORT).show();
+                for(DataSnapshot article : snapshot.getChildren()){
+                    String description = article.child("description").getValue(String.class);
+                    double price = article.child("price").getValue(double.class);
+                    String market = article.child("market").getValue(String.class);
+                    FoodItem foodItem = new FoodItem(description, price, market);
+
                     data.add(foodItem);
+                    if(foodItem != null)
+                        Toast.makeText(ListActivity.this, foodItem.toString(), Toast.LENGTH_SHORT).show();
                 }
                 rvAdapter.notifyDataSetChanged();
             }
