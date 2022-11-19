@@ -3,18 +3,21 @@ package fr.damiens.find_my_food;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ItemViewHolder> {
 
-    List<FoodItem> dataList;
+    ArrayList<FoodItem> dataList;
+    Context context;
 
     static class ItemViewHolder extends RecyclerView.ViewHolder {
         TextView descriptionTxt;
@@ -31,22 +34,24 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ItemViewHolder> {
         }
     }
 
-    public RVAdapter(List<FoodItem> data){
+    public RVAdapter(Context context, ArrayList<FoodItem> data){
         this.dataList = data;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_list_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.rv_list_item, parent, false);
         return new ItemViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position){
-        holder.descriptionTxt.setText(dataList.get(position).getDescription());
-        holder.priceTxt.setText(""+dataList.get(position).getPrice()+" €");
-        holder.marketTxt.setText(dataList.get(position).getMarket());
+        FoodItem foodItem = dataList.get(position);
+        holder.descriptionTxt.setText(foodItem.getDescription());
+        holder.priceTxt.setText(""+foodItem.getPrice()+" €");
+        holder.marketTxt.setText(foodItem.getMarket());
     }
 
     @Override

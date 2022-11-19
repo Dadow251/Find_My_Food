@@ -1,5 +1,9 @@
 package fr.damiens.find_my_food;
 
+import static android.content.ContentValues.TAG;
+
+import android.util.Log;
+
 public class FoodItem {
 
     private String description;
@@ -22,5 +26,13 @@ public class FoodItem {
 
     public String getMarket() {
         return market;
+    }
+
+    public void print(){
+        Log.d(TAG, "///" + description + ", " + price + ", " + market);
+    }
+
+    public String toString(){
+        return description + " - " + price + " - " + market;
     }
 }
