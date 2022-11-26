@@ -8,10 +8,14 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -47,6 +51,22 @@ public class ListActivity extends AppCompatActivity {
 
         rvAdapter = new RVAdapter(this, data);
         recyclerView.setAdapter(rvAdapter);
+
+        recyclerView.addOnItemTouchListener(
+                new RVItemTouchListener(
+                        this,
+                        new RVItemTouchListener.ItemTouchListener() {
+                            @Override
+                            public void onItemTouch(View view, int position) {
+                                String touchedItem = data.get(position).toString();
+                                Toast.makeText(ListActivity.this, "Clicked on " + touchedItem, Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(ListActivity.this,ItemActivity.class);
+                                intent.putExtra(Intent.EXTRA_TEXT, touchedItem);
+                                startActivity(intent);
+                            }
+                        }
+                )
+        );
 
         // Message de recherche
         Intent intent = getIntent();
