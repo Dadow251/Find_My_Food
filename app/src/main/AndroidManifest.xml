@@ -28,6 +28,14 @@
             android:name=".ListActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".ItemActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".AddFoodItemActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>
