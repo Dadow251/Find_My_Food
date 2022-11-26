@@ -28,4 +28,12 @@ public class MainActivity extends AppCompatActivity {
         // Passage à l'Activity suivante (ListActivity)
         startActivity(intent);
     }
+
+    public void add(View view){
+        // Appel à AddFoodItemActivity
+        Intent intent = new Intent(this, AddFoodItemActivity.class);
+
+        // Passage à l'Activity suivante (AddFoodItemActivity)
+        startActivity(intent);
+    }
 }
