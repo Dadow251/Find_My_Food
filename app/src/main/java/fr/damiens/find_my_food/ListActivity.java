@@ -86,19 +86,20 @@ public class ListActivity extends AppCompatActivity {
                     String market = article.child("market").getValue(String.class);
                     FoodItem foodItem = new FoodItem(description, price, market);
 
-                    if(description != null) {
+                    int nbSim = 0; // nombre de mots similaires entre recherche et description
+                    if(keyWords.equals(""))
+                        nbSim = Integer.MAX_VALUE; // rien dans la recherche => affiche tout
+                    else if(description != null) {
                         String[] keyWordsResult = description.toLowerCase().split(" ");
-                        int nbSim = 0; // nombre de mots similaires
-                        int nbWords = keyWordsSearch.length;
                         for (String s : keyWordsSearch) {
                             for (String r : keyWordsResult) {
                                 if (s.equals(r))
                                     nbSim++;
                             }
                         }
-                        if(nbSim > 0) // sensibilité de la reconnaissance
-                            data.add(foodItem); // W : liste vide en dehors de la classe
                     }
+                    if(nbSim > 0) // sensibilité de la reconnaissance
+                        data.add(foodItem); // W : liste vide en dehors de la classe
                 }
                 rvAdapter.notifyDataSetChanged();
             }
