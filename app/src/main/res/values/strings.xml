@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">Find My Food</string>
+    <string name="appName">Find My Food</string>
     <string name="searchBarText">Entrez le nom d\'un produit</string>
     <string name="searchButtonText">Rechercher</string>
+    <string name="descriptionName">Description :</string>
+    <string name="priceName">Prix :</string>
+    <string name="marketName">Supermarché :</string>
+    <string name="noData">N/A</string>
 </resources>

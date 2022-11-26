@@ -10,6 +10,8 @@ public class FoodItem {
     private double price;
     private String market;
 
+    public FoodItem(){}
+
     public FoodItem(String description, double price, String market){
         this.description = description;
         this.price = price;
@@ -28,11 +30,23 @@ public class FoodItem {
         return market;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setMarket(String market) {
+        this.market = market;
+    }
+
     public void print(){
         Log.d(TAG, "///" + description + ", " + price + ", " + market);
     }
 
     public String toString(){
-        return description + " - " + price + " - " + market;
+        return description + "/" + price + "/" + market;
     }
 }

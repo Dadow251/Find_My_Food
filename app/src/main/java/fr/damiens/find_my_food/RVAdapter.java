@@ -52,6 +52,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ItemViewHolder> {
         holder.descriptionTxt.setText(foodItem.getDescription());
         holder.priceTxt.setText(""+foodItem.getPrice()+" €");
         holder.marketTxt.setText(foodItem.getMarket());
+        holder.productImage.setImageResource(R.drawable.ic_launcher_foreground);
     }
 
     @Override
