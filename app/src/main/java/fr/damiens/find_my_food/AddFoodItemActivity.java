@@ -1,30 +1,14 @@
 package fr.damiens.find_my_food;
 
-import static android.content.ContentValues.TAG;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.Map;
 
 public class AddFoodItemActivity extends AppCompatActivity {
 
@@ -46,20 +30,23 @@ public class AddFoodItemActivity extends AppCompatActivity {
         EditText editDescription = findViewById(R.id.editTextDescription);
         EditText editPrice = findViewById(R.id.editTextPrice);
         EditText editMarket = findViewById(R.id.editTextMarket);
+        EditText editURL = findViewById(R.id.editTextURL);
 
         // Récupération des informations de l'article à ajouter
-        String Aliment = editAliment.getText().toString();
-        String Description = editDescription.getText().toString();
-        Double Price = Double.parseDouble(editPrice.getText().toString());
-        String Market = editMarket.getText().toString();
+        String aliment = editAliment.getText().toString();
+        String description = editDescription.getText().toString();
+        Double price = Double.parseDouble(editPrice.getText().toString());
+        String market = editMarket.getText().toString();
+        String url = editURL.getText().toString();
 
         // Ecriture dans la base de données
-        dbRef.child(Aliment).child("description").setValue(Description);
-        dbRef.child(Aliment).child("price").setValue(Price);
-        dbRef.child(Aliment).child("market").setValue(Market);
+        dbRef.child(aliment).child("description").setValue(description);
+        dbRef.child(aliment).child("price").setValue(price);
+        dbRef.child(aliment).child("market").setValue(market);
+        dbRef.child(aliment).child("url").setValue(url);
 
         // Affichage sur le layout de l'aliment ajouté à la base de données
-        Toast.makeText(AddFoodItemActivity.this,Aliment+" ajouté à la base de données" , Toast.LENGTH_SHORT).show();
+        Toast.makeText(AddFoodItemActivity.this, aliment +" ajouté à la base de données" , Toast.LENGTH_SHORT).show();
 
     }
 

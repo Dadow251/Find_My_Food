@@ -3,8 +3,9 @@
     <string name="searchBarText">Entrez le nom d\'un produit</string>
     <string name="searchButtonText">Rechercher</string>
     <string name="descriptionName">Description</string>
-    <string name="priceName">Prix</string>
+    <string name="priceName">Prix (€)</string>
     <string name="marketName">Supermarché</string>
     <string name="noData">N/A</string>
-    <string name="collectionName">Aliments</string>
+    <string name="itemName">Aliment_N</string>
+    <string name="urlName">Adresse URL de l\'image</string>
 </resources>
