@@ -6,6 +6,7 @@ import android.util.Log;
 
 public class FoodItem {
 
+    private String name;
     private String description;
     private double price;
     private String market;
@@ -19,11 +20,16 @@ public class FoodItem {
         this.market = market;
     }
 
-    public FoodItem(String description, double price, String market, String url) {
+    public FoodItem(String name, String description, double price, String market, String url) {
+        this.name = name;
         this.description = description;
         this.price = price;
         this.market = market;
         this.url = url;
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     public String getDescription(){
@@ -63,6 +69,6 @@ public class FoodItem {
     }
 
     public String toString(){
-        return description + "///" + price + "///" + market + "///" + url;
+        return name + "///" + description + "///" + price + "///" + market + "///" + url;
     }
 }

@@ -18,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
         // Récupération du message après ajout d'un item dans la base de données
         Intent intent = getIntent();
         String message = intent.getStringExtra(Intent.EXTRA_TEXT);
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        if(message != null)
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     /** Appelée lors d'un appui sur le bouton searchButton */
