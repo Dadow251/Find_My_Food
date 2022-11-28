@@ -43,11 +43,13 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        // Accès à la base de données Realtime Database (Firebase)
         FirebaseDatabase db = FirebaseDatabase.getInstance("https://find-my-food-a85a8-default-rtdb.europe-west1.firebasedatabase.app/");
         DatabaseReference dbRef = db.getReference("Aliments");
 
         textView = (TextView) findViewById(R.id.searchTextDisplay);
 
+        // Configuration de la RecyclerView
         recyclerView = (RecyclerView) findViewById(R.id.rv_search);
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -58,6 +60,7 @@ public class ListActivity extends AppCompatActivity {
         rvAdapter = new RVAdapter(this, data);
         recyclerView.setAdapter(rvAdapter);
 
+        // Fonctionnalité de clic sur un item de la RecyclerView : ouvre une page dédiée à l'item
         recyclerView.addOnItemTouchListener(new RVItemTouchListener(this, new RVItemTouchListener.ItemTouchListener() {
                     @Override
                     public void onItemTouch(View view, int position) {

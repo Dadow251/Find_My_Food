@@ -35,11 +35,13 @@ public class ItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
 
+        // Initialisation des éléments graphiques
         descriptionTextView = findViewById(R.id.descriptionDisplay);
         priceTextView = findViewById(R.id.priceDisplay);
         marketTextView = findViewById(R.id.marketDisplay);
         imageImageView = findViewById(R.id.imageView);
 
+        // Récupération des champs du FoodItem donnés sous forme d'une String
         Intent intent = getIntent();
         String fiString = intent.getStringExtra(Intent.EXTRA_TEXT);
         String[] fieldsTab = fiString.split("///");
@@ -48,6 +50,7 @@ public class ItemActivity extends AppCompatActivity {
         itemMarket = fieldsTab[2];
         itemURL = fieldsTab[3];
 
+        // Affichage des champs du FoodItem
         descriptionTextView.setText(itemDescription);
         priceTextView.setText(""+itemPrice);
         marketTextView.setText(itemMarket);

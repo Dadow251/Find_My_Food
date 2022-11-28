@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Récupération du message après ajout d'un item dans la base de données
         Intent intent = getIntent();
         String message = intent.getStringExtra(Intent.EXTRA_TEXT);
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
