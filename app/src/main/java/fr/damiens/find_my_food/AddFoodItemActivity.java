@@ -2,6 +2,7 @@ package fr.damiens.find_my_food;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -45,9 +46,11 @@ public class AddFoodItemActivity extends AppCompatActivity {
         dbRef.child(aliment).child("market").setValue(market);
         dbRef.child(aliment).child("url").setValue(url);
 
-        // Affichage sur le layout de l'aliment ajouté à la base de données
-        Toast.makeText(AddFoodItemActivity.this, aliment +" ajouté à la base de données" , Toast.LENGTH_SHORT).show();
-
+        // Retour à l'Activity Main et affichage du message de bon déroulement de l'ajout
+        String message = aliment + " a bien été ajouté à la base de données";
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+        startActivity(intent);
     }
 
 }

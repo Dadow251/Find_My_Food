@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,6 +14,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(Intent.EXTRA_TEXT);
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     /** Appelée lors d'un appui sur le bouton searchButton */
