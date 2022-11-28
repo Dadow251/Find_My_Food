@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ClipData;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -17,6 +19,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,21 +58,15 @@ public class ListActivity extends AppCompatActivity {
         rvAdapter = new RVAdapter(this, data);
         recyclerView.setAdapter(rvAdapter);
 
-        recyclerView.addOnItemTouchListener(
-                new RVItemTouchListener(
-                        this,
-                        new RVItemTouchListener.ItemTouchListener() {
-                            @Override
-                            public void onItemTouch(View view, int position) {
-                                String touchedItem = data.get(position).toString();
-                                Toast.makeText(ListActivity.this, "Clicked on " + touchedItem, Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(ListActivity.this,ItemActivity.class);
-                                intent.putExtra(Intent.EXTRA_TEXT, touchedItem);
-                                startActivity(intent);
-                            }
-                        }
-                )
-        );
+        recyclerView.addOnItemTouchListener(new RVItemTouchListener(this, new RVItemTouchListener.ItemTouchListener() {
+                    @Override
+                    public void onItemTouch(View view, int position) {
+                        String touchedItem = data.get(position).toString();
+                        Intent intent = new Intent(ListActivity.this,ItemActivity.class);
+                        intent.putExtra(Intent.EXTRA_TEXT, touchedItem);
+                        startActivity(intent);
+                    }
+                }));
 
         // Message de recherche
         Intent intent = getIntent();
@@ -84,7 +84,8 @@ public class ListActivity extends AppCompatActivity {
                     String description = article.child("description").getValue(String.class);
                     double price = article.child("price").getValue(double.class);
                     String market = article.child("market").getValue(String.class);
-                    FoodItem foodItem = new FoodItem(description, price, market);
+                    String url = article.child("url").getValue(String.class);
+                    FoodItem foodItem = new FoodItem(description, price, market, url);
 
                     int nbSim = 0; // nombre de mots similaires entre recherche et description
                     if(keyWords.equals(""))

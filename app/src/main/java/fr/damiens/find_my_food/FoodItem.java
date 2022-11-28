@@ -9,6 +9,7 @@ public class FoodItem {
     private String description;
     private double price;
     private String market;
+    private String url;
 
     public FoodItem(){}
 
@@ -16,6 +17,13 @@ public class FoodItem {
         this.description = description;
         this.price = price;
         this.market = market;
+    }
+
+    public FoodItem(String description, double price, String market, String url) {
+        this.description = description;
+        this.price = price;
+        this.market = market;
+        this.url = url;
     }
 
     public String getDescription(){
@@ -30,6 +38,10 @@ public class FoodItem {
         return market;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -42,11 +54,15 @@ public class FoodItem {
         this.market = market;
     }
 
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public void print(){
         Log.d(TAG, "///" + description + ", " + price + ", " + market);
     }
 
     public String toString(){
-        return description + "/" + price + "/" + market;
+        return description + "///" + price + "///" + market + "///" + url;
     }
 }

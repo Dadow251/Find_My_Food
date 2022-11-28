@@ -4,11 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +60,32 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ItemViewHolder> {
         holder.descriptionTxt.setText(foodItem.getDescription());
         holder.priceTxt.setText(""+foodItem.getPrice()+" €");
         holder.marketTxt.setText(foodItem.getMarket());
-        holder.productImage.setImageResource(R.drawable.ic_launcher_foreground);
+
+        Glide.with(holder.productImage)
+                .asBitmap()
+                .load(foodItem.getUrl())
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .error(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.ic_launcher_background)
+                .centerCrop()
+                .into(new BitmapImageViewTarget(holder.productImage) {
+                    @Override
+                    public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {
+                        super.onResourceReady(bitmap, transition);
+                        assert holder.productImage != null;
+                        holder.productImage.setImageBitmap(bitmap);
+                    }
+
+                    @Override
+                    public void onLoadFailed(Drawable errorDrawable) {
+                    }
+
+                    @Override
+                    public void onLoadStarted(Drawable placeholder) {
+                        super.onLoadStarted(placeholder);
+                    }
+                });
     }
 
     @Override
