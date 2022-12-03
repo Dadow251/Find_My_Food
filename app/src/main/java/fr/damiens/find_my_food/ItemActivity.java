@@ -1,9 +1,14 @@
 package fr.damiens.find_my_food;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.collection.ArraySet;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -24,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class ItemActivity extends AppCompatActivity {
 
@@ -31,6 +38,9 @@ public class ItemActivity extends AppCompatActivity {
     private TextView priceTextView;
     private TextView marketTextView;
     private ImageView imageImageView;
+
+    FirebaseDatabase db = FirebaseDatabase.getInstance("https://find-my-food-a85a8-default-rtdb.europe-west1.firebasedatabase.app/");
+    DatabaseReference dbRef = db.getReference("Aliments");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +53,7 @@ public class ItemActivity extends AppCompatActivity {
         marketTextView = findViewById(R.id.marketDisplay);
         imageImageView = findViewById(R.id.imageView);
 
-        // Accès à la base de données Realtime Database (Firebase)
-        FirebaseDatabase db = FirebaseDatabase.getInstance("https://find-my-food-a85a8-default-rtdb.europe-west1.firebasedatabase.app/");
-        DatabaseReference dbRef = db.getReference("Aliments");
-
-        // Récupération des champs du FoodItem donnés sous forme d'une String
-        //------------------------------------------------------------------------------------------
-        // récupérer juste le "name" pour chercher dans la database => mis à jour systématiquement
-        //------------------------------------------------------------------------------------------
+        // Récupération du nom (identifiant) du FoodItem
         Intent intent = getIntent();
         String name = intent.getStringExtra(Intent.EXTRA_TEXT);
 
@@ -100,13 +103,6 @@ public class ItemActivity extends AppCompatActivity {
 
             }
         });
-//        String fiString = intent.getStringExtra(Intent.EXTRA_TEXT);
-//        String[] fieldsTab = fiString.split("///");
-//        String itemName = fieldsTab[0];
-//        String itemDescription = fieldsTab[1];
-//        double itemPrice = Double.parseDouble(fieldsTab[2]);
-//        String itemMarket = fieldsTab[3];
-//        String itemURL = fieldsTab[4];
     }
 
     public void update(View view){
@@ -118,5 +114,24 @@ public class ItemActivity extends AppCompatActivity {
 
         // Passage à l'Activity suivante (UpdateFoodItemActivity)
         startActivity(intent);
+    }
+
+    public void addToBasket(View view){
+        String name = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+
+        SharedPreferences savedItems = getSharedPreferences("savedList", MODE_PRIVATE);
+        SharedPreferences.Editor editor = savedItems.edit();
+        Set<String> items = savedItems.getStringSet("savedBasket",null);
+        if(items != null) {
+            items.add(name);
+            editor.putStringSet("savedBasket", items);
+        }
+        else{
+            Set<String> set = new ArraySet<>();
+            set.add(name);
+            editor.putStringSet("savedBasket", set);
+        }
+        editor.commit();
+        Toast.makeText(this, name + " a été ajouté à votre panier", Toast.LENGTH_SHORT).show();
     }
 }

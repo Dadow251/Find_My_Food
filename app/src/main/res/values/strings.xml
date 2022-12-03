@@ -8,4 +8,5 @@
     <string name="noData">N/A</string>
     <string name="itemName">Aliment_N</string>
     <string name="urlName">Adresse URL de l\'image</string>
+    <string name="savedBasket">savedBasket</string>
 </resources>
