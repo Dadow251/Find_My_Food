@@ -60,7 +60,7 @@ public class ListActivity extends AppCompatActivity {
                         intent.putExtra(Intent.EXTRA_TEXT, touchedItemName);
                         startActivity(intent);
                     }
-                }));
+                }, true, false));
 
         // Message de recherche
         Intent intent = getIntent();

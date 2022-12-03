@@ -68,7 +68,7 @@ public class BasketActivity extends AppCompatActivity {
 
                 dataSetDisplay(items);
             }
-        }));
+        }, false, true));
     }
 
     private void dataSetDisplay(Set<String> items){
