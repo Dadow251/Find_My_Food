@@ -119,17 +119,17 @@ public class ItemActivity extends AppCompatActivity {
     public void addToBasket(View view){
         String name = getIntent().getStringExtra(Intent.EXTRA_TEXT);
 
-        SharedPreferences savedItems = getSharedPreferences("@string/savedList", MODE_PRIVATE);
+        SharedPreferences savedItems = getSharedPreferences("savedList", MODE_PRIVATE);
         SharedPreferences.Editor editor = savedItems.edit();
-        Set<String> items = savedItems.getStringSet("@string/savedBasket",null);
+        Set<String> items = savedItems.getStringSet("savedBasket",null);
         if(items != null) {
             items.add(name);
-            editor.putStringSet("@string/savedBasket", items);
+            editor.putStringSet("savedBasket", items);
         }
         else{
             Set<String> set = new ArraySet<>();
             set.add(name);
-            editor.putStringSet("@string/savedBasket", set);
+            editor.putStringSet("savedBasket", set);
         }
         editor.commit();
         Toast.makeText(this, name + " a été ajouté à votre panier", Toast.LENGTH_SHORT).show();
