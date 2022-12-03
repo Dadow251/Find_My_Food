@@ -47,8 +47,8 @@ public class BasketActivity extends AppCompatActivity {
         rvAdapter = new RVAdapter(this, data);
         recyclerView.setAdapter(rvAdapter);
 
-        SharedPreferences savedItems = getSharedPreferences("savedList", MODE_PRIVATE);
-        Set<String> items = savedItems.getStringSet("savedBasket", null);
+        SharedPreferences savedItems = getSharedPreferences("@string/savedList", MODE_PRIVATE);
+        Set<String> items = savedItems.getStringSet("@string/savedBasket", null);
 
         if (items != null) {
             data.clear();
