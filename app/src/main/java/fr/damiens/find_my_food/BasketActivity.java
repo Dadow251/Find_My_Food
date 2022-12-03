@@ -1,8 +1,10 @@
 package fr.damiens.find_my_food;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,14 +29,14 @@ public class BasketActivity extends AppCompatActivity {
     private ArrayList<FoodItem> data;
     private RVAdapter rvAdapter;
 
+    // Récupération de la base de données en ligne
+    FirebaseDatabase db = FirebaseDatabase.getInstance("https://find-my-food-a85a8-default-rtdb.europe-west1.firebasedatabase.app/");
+    DatabaseReference dbRef = db.getReference("Aliments");
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basket);
-
-        // Récupération de la base de données en ligne
-        FirebaseDatabase db = FirebaseDatabase.getInstance("https://find-my-food-a85a8-default-rtdb.europe-west1.firebasedatabase.app/");
-        DatabaseReference dbRef = db.getReference("Aliments");
 
         // Configuration de la RecyclerView
         recyclerView = (RecyclerView) findViewById(R.id.rv_basket);
@@ -50,9 +52,57 @@ public class BasketActivity extends AppCompatActivity {
         SharedPreferences savedItems = getSharedPreferences("savedList", MODE_PRIVATE);
         Set<String> items = savedItems.getStringSet("savedBasket", null);
 
+        dataSetDisplay(items);
+
+        // Fonctionnalité de clic sur un item de la RecyclerView : supprime l'item
+        recyclerView.addOnItemTouchListener(new RVItemTouchListener(this, new RVItemTouchListener.ItemTouchListener() {
+            @Override
+            public void onItemTouch(View view, int position) {
+                String touchedItemName = data.get(position).getName();
+
+                SharedPreferences savedItems = getSharedPreferences("savedList", MODE_PRIVATE);
+                Set<String> items = savedItems.getStringSet("savedBasket", null);
+                items.remove(touchedItemName);
+                SharedPreferences.Editor editor = savedItems.edit();
+                editor.putStringSet("savedBasket", items);
+
+                dataSetDisplay(items);
+            }
+        }));
+    }
+
+    private void dataSetDisplay(Set<String> items){
+        // (Re)Configuration de la RecyclerView
+        recyclerView = (RecyclerView) findViewById(R.id.rv_basket);
+        recyclerView.hasFixedSize();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        rvAdapter = new RVAdapter(this, data);
+        recyclerView.setAdapter(rvAdapter);
+
         if (items != null) {
-            data.clear();
+            // Suppression des articles qui ne font plus partie du panier
+            for(int i = 0; i < data.size(); i++){
+                boolean exists = false;
+                for(String name : items){
+                    if(name.equals(data.get(i).getName()))
+                        exists = true;
+                }
+                if(!exists)
+                    data.remove(i);
+            }
+
             for (String name : items) {
+                // Cas où le produit est déjà dans la liste
+                boolean exists = false;
+                for(FoodItem fi : data){
+                    if(fi.getName().equals(name)){
+                        exists = true;
+                        break;
+                    }
+                }
+                if(exists) continue;
+
                 // Récupération des données de Realtime database (Firebase)
                 dbRef.addValueEventListener(new ValueEventListener() {
                     @Override
