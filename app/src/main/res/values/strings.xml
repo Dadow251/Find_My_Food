@@ -6,6 +6,7 @@
     <string name="sendButtonText">Envoyer</string>
     <string name="addButtonText">Ajouter</string>
     <string name="addToBasketButtonText">Ajouter au panier</string>
+    <string name="removeFromBasketButtonText">Retirer du panier</string>
     <string name="modifyButtonText">Modifier</string>
     <string name="descriptionName">Description détaillée</string>
     <string name="priceName">Prix (en €)</string>

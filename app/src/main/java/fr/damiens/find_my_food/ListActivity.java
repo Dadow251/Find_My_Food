@@ -58,6 +58,7 @@ public class ListActivity extends AppCompatActivity {
                         String touchedItemName = data.get(position).getName();
                         Intent intent = new Intent(ListActivity.this,ItemActivity.class);
                         intent.putExtra(Intent.EXTRA_TEXT, touchedItemName);
+                        intent.putExtra(Intent.EXTRA_COMPONENT_NAME, "AddButtonNeeded");
                         startActivity(intent);
                     }
                 }, true, false));

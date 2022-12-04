@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BasketItemActivity">
+
+    <TextView
+        android:id="@+id/marketNameTextViewBasket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/marketName2"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/priceNameTextViewBasket"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/descriptionDisplayBasket"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.261" />
+
+    <TextView
+        android:id="@+id/priceNameTextViewBasket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/priceName2"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/descriptionDisplayBasket"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.202" />
+
+    <TextView
+        android:id="@+id/descriptionDisplayBasket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="false"
+        android:text="@string/noData"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/priceNameTextViewBasket"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.496" />
+
+    <TextView
+        android:id="@+id/marketDisplayBasket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/noData"
+        app:layout_constraintBottom_toBottomOf="@+id/marketNameTextViewBasket"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toEndOf="@+id/marketNameTextViewBasket"
+        app:layout_constraintTop_toTopOf="@+id/marketNameTextViewBasket"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/priceDisplayBasket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/noData"
+        app:layout_constraintBottom_toBottomOf="@+id/priceNameTextViewBasket"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintStart_toEndOf="@+id/priceNameTextViewBasket"
+        app:layout_constraintTop_toTopOf="@+id/priceNameTextViewBasket"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageViewBasket"
+        android:layout_width="363dp"
+        android:layout_height="348dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.736"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <Button
+        android:id="@+id/modifyButtonBasket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="update"
+        android:text="@string/modifyButtonText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.906"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
+
+    <Button
+        android:id="@+id/addToBasketButtonBasket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="removeFromBasket"
+        android:text="@string/removeFromBasketButtonText"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewBasket"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewBasket"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.944" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

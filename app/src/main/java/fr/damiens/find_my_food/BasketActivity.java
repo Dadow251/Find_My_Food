@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -12,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GestureDetectorCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,6 +43,10 @@ public class BasketActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basket);
 
+        String message = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+        if(message != null)
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
         // Configuration de la RecyclerView
         recyclerView = (RecyclerView) findViewById(R.id.rv_basket);
         recyclerView.hasFixedSize();
@@ -54,43 +61,24 @@ public class BasketActivity extends AppCompatActivity {
         SharedPreferences savedItems = getSharedPreferences("savedList", MODE_PRIVATE);
         Set<String> items = savedItems.getStringSet("savedBasket", null);
 
-        dataSetDisplay(items);
-
-        // Fonctionnalité de clic sur un item de la RecyclerView : supprime l'item
+        // Fonctionnalité de clic sur un item de la RecyclerView : affiche l'item
         recyclerView.addOnItemTouchListener(new RVItemTouchListener(this, new RVItemTouchListener.ItemTouchListener() {
             @Override
             public void onItemTouch(View view, int position) {
                 String touchedItemName = data.get(position).getName();
-                String touchedItemNameShort = touchedItemName.split("_")[0];
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(BasketActivity.this);
-                builder.setMessage("Voulez-vous supprimer \'" + touchedItemNameShort + "\' de votre panier ?")
-                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
-                            // Modification du prix et de l'image de l'aliment
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                SharedPreferences savedItems = getSharedPreferences("savedList", MODE_PRIVATE);
-                                Set<String> items = savedItems.getStringSet("savedBasket", null);
-                                items.remove(touchedItemName);
-                                SharedPreferences.Editor editor = savedItems.edit();
-                                editor.putStringSet("savedBasket", items);
-                                editor.commit();
-
-                                dataSetDisplay(items);
-
-                                Toast.makeText(BasketActivity.this,touchedItemName + " a bien été supprimé de votre panier", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .setNegativeButton("Non", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                            }
-                        });
-                builder.create().show();
-
-                dataSetDisplay(items);
+                Intent intent = new Intent(BasketActivity.this, BasketItemActivity.class);
+                intent.putExtra(Intent.EXTRA_TEXT, touchedItemName);
+                startActivity(intent);
             }
-        }, false, true));
+        }, true, false));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences savedItems = getSharedPreferences("savedList", MODE_PRIVATE);
+        Set<String> items = savedItems.getStringSet("savedBasket", null);
+        dataSetDisplay(items);
     }
 
     private void dataSetDisplay(Set<String> items){

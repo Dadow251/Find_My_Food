@@ -44,6 +44,10 @@
             android:name=".BasketActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".BasketItemActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

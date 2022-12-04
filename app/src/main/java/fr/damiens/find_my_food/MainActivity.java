@@ -20,6 +20,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPreferences savedItems = getSharedPreferences("savedList", MODE_PRIVATE);
+        SharedPreferences.Editor editor = savedItems.edit();
+        editor.putStringSet("savedBasket", null);
+        editor.commit();
+
         // Récupération du message après ajout d'un item dans la base de données
         Intent intent = getIntent();
         String message = intent.getStringExtra(Intent.EXTRA_TEXT);
