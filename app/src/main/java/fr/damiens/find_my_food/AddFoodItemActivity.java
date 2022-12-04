@@ -84,14 +84,9 @@ public class AddFoodItemActivity extends AppCompatActivity {
                     // Atribution numero d'identification du nouvel aliment à partir des autres aliment de la base de données
                     if(!article_exists) {
                         if (article.getKey().toLowerCase().contains(aliment.toLowerCase())) {
-                            int num_result = (int) article.getKey().toLowerCase().charAt(article.getKey().toLowerCase().length() - 1);
-                            int num_add = (int) name.toLowerCase().charAt(name.toLowerCase().length() - 1);
-                            //int num_result = Integer.parseInt(article.getKey().toLowerCase().split("_")[1]);
-                            //int num_add = Integer.parseInt(name.toLowerCase().split("_")[1]);
-                            if (num_add <= num_result) {
-                                num_add = num_result + 1;
-                            }
-                            name = aliment + "_" + (char) num_add;
+                            int num_result = Integer.parseInt(article.getKey().toLowerCase().split("_")[1]);
+                            int num_add = num_result + 1;
+                            name = aliment + "_" + num_add;
                         }
                     }
                 }
