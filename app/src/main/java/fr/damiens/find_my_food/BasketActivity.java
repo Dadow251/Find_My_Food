@@ -1,6 +1,7 @@
 package fr.damiens.find_my_food;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -60,11 +62,30 @@ public class BasketActivity extends AppCompatActivity {
             public void onItemTouch(View view, int position) {
                 String touchedItemName = data.get(position).getName();
 
-                SharedPreferences savedItems = getSharedPreferences("savedList", MODE_PRIVATE);
-                Set<String> items = savedItems.getStringSet("savedBasket", null);
-                items.remove(touchedItemName);
-                SharedPreferences.Editor editor = savedItems.edit();
-                editor.putStringSet("savedBasket", items);
+                AlertDialog.Builder builder = new AlertDialog.Builder(BasketActivity.this);
+                builder.setMessage("Voulez-vous supprimer cet aliment de votre panier ?")
+                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                            // Modification du prix et de l'image de l'aliment
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                SharedPreferences savedItems = getSharedPreferences("savedList", MODE_PRIVATE);
+                                Set<String> items = savedItems.getStringSet("savedBasket", null);
+                                items.remove(touchedItemName);
+                                SharedPreferences.Editor editor = savedItems.edit();
+                                editor.putStringSet("savedBasket", items);
+                                editor.commit();
+
+                                dataSetDisplay(items);
+
+                                Toast.makeText(BasketActivity.this,touchedItemName + " a bien été supprimé de votre panier", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+                builder.create().show();
 
                 dataSetDisplay(items);
             }
@@ -85,8 +106,10 @@ public class BasketActivity extends AppCompatActivity {
             for(int i = 0; i < data.size(); i++){
                 boolean exists = false;
                 for(String name : items){
-                    if(name.equals(data.get(i).getName()))
+                    if(name.equals(data.get(i).getName())) {
                         exists = true;
+                        break;
+                    }
                 }
                 if(!exists)
                     data.remove(i);
