@@ -49,11 +49,41 @@ public class AddFoodItemActivity extends AppCompatActivity {
 
 
         // Récupération des informations de l'article à ajouter
-        String aliment = editAliment.getText().toString().replace(" ","_");
-        String description = editDescription.getText().toString();
-        Double price = Double.parseDouble(editPrice.getText().toString());
-        String market = editMarket.getText().toString();
-        String url = editURL.getText().toString();
+        String aliment;
+        String description;
+        Double price;
+        String market;
+        String url;
+
+        if(editAliment.length() > 0)
+            aliment = editAliment.getText().toString().replace(" ","_");
+        else{
+            Toast.makeText(this, "Des champs obligatoires sont vides", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(editDescription.length() > 0)
+            description = editDescription.getText().toString();
+        else{
+            Toast.makeText(this, "Des champs obligatoires sont vides", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(editPrice.length() > 0)
+            price = Double.parseDouble(editPrice.getText().toString());
+        else{
+            Toast.makeText(this, "Des champs obligatoires sont vides", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(editMarket.length() > 0)
+            market = editMarket.getText().toString();
+        else{
+            Toast.makeText(this, "Des champs obligatoires sont vides", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        url = editURL.getText().toString();
 
         // Lecture et écriture dans la base de données
         dbRef.addValueEventListener(new ValueEventListener() {
@@ -99,7 +129,7 @@ public class AddFoodItemActivity extends AppCompatActivity {
                     dbRef.child(name).child("url").setValue(url);
 
                     // Retour à l'Activity Main et affichage du message de bon déroulement de l'ajout
-                    String message = name + " a bien été ajouté à la base de données";
+                    String message = name.split("_")[0] + " a bien été ajouté à la base de données";
                     Intent intent = new Intent(AddFoodItemActivity.this, MainActivity.class);
                     intent.putExtra(Intent.EXTRA_TEXT, message);
                     startActivity(intent);
@@ -120,7 +150,7 @@ public class AddFoodItemActivity extends AppCompatActivity {
                                     }
 
                                     // Retour à l'Activity Main et affichage du message de bon déroulement de l'ajout
-                                    String message = name + " a bien été modifié dans la base de données";
+                                    String message = name.split("_")[0] + " a bien été modifié dans la base de données";
                                     Intent intent = new Intent(AddFoodItemActivity.this, MainActivity.class);
                                     intent.putExtra(Intent.EXTRA_TEXT, message);
                                     startActivity(intent);
