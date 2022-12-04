@@ -14,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class UpdateFoodItemActivity extends AppCompatActivity {
 
     EditText priceTxt;
+    EditText urlTxt;
     String fiString;
 
     @Override
@@ -22,6 +23,7 @@ public class UpdateFoodItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update_item);
 
         priceTxt = findViewById(R.id.editTextPriceUpdate);
+        urlTxt = findViewById(R.id.editTextURLUpdate);
     }
 
     public void sendUpdate(View view){
@@ -30,13 +32,37 @@ public class UpdateFoodItemActivity extends AppCompatActivity {
         DatabaseReference dbRef = db.getReference("Aliments");
 
         // Récupération des informations de l'article à mettre à jour
-        double priceUpdate = Double.parseDouble(priceTxt.getText().toString());
+        boolean priceIsEmpty = false;
+        boolean urlIsEmpty = false;
+        double priceUpdate = 0;
+        String urlUpdate = "";
+        if(priceTxt.length() > 0)
+            priceUpdate = Double.parseDouble(priceTxt.getText().toString());
+        else{
+            priceIsEmpty = true;
+        }
+
+        if(urlTxt.length() > 0)
+            urlUpdate = urlTxt.getText().toString();
+        else{
+            urlIsEmpty = true;
+        }
+
+        if(priceIsEmpty && urlIsEmpty){
+            Toast.makeText(this, "Les deux champs sont vides", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         // Ecriture dans la base de données
         String name = getIntent().getStringExtra(Intent.EXTRA_TEXT);
 
-        dbRef.child(name).child("price").setValue(priceUpdate);
-        Toast.makeText(this, "Vous avez mis à jour le prix d'un article", Toast.LENGTH_SHORT).show();
+        if(!priceIsEmpty) {
+            dbRef.child(name).child("price").setValue(priceUpdate);
+            Toast.makeText(this, "Vous avez mis à jour le prix d'un article", Toast.LENGTH_SHORT).show();
+        }
+        if(!urlIsEmpty) {
+            dbRef.child(name).child("url").setValue(urlUpdate);
+            Toast.makeText(this, "Vous avez mis à jour le prix d'un article", Toast.LENGTH_SHORT).show();
+        }
     }
-
 }

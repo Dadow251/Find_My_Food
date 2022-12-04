@@ -7,19 +7,38 @@
     tools:context="fr.damiens.find_my_food.UpdateFoodItemActivity">
 
     <EditText
-        android:id="@+id/editTextPriceUpdate"
-        android:layout_width="206dp"
+        android:id="@+id/editTextURLUpdate"
+        android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:autofillHints="false"
+        android:ems="10"
+        android:hint="@string/urlName"
+        android:inputType="textLongMessage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.397" />
+
+    <EditText
+        android:id="@+id/editTextPriceUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:autofillHints="false"
         android:ems="10"
         android:hint="@string/priceName"
-        android:inputType="number"
+        android:inputType="number|numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.476" />
+        app:layout_constraintVertical_bias="0.295" />
 
     <Button
         android:id="@+id/sendUpdateButton"
