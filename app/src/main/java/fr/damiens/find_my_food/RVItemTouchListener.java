@@ -16,22 +16,22 @@ public class RVItemTouchListener implements RecyclerView.OnItemTouchListener { /
 
     GestureDetector mGestureDetector;
 
-    public RVItemTouchListener(Context context, ItemTouchListener listener) {
+    public RVItemTouchListener(Context context, ItemTouchListener listener, boolean onSingleTap, boolean onDoubleTap) {
         itemTouchListener = listener;
         mGestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onSingleTapUp(MotionEvent e) { // this SimpleOnGestureListener returns true
-                return true;
+                return onSingleTap;
             }
 
             @Override
             public boolean onSingleTapConfirmed(MotionEvent e) { // this SimpleOnGestureListener returns true
-                return true;
+                return onSingleTap;
             }
 
             @Override
             public boolean onDoubleTap(MotionEvent e) { // this SimpleOnGestureListener returns true
-                return true;
+                return onDoubleTap;
             }
         });
     }

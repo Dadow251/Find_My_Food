@@ -1,12 +1,17 @@
 package fr.damiens.find_my_food;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.collection.ArraySet;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +46,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddFoodItemActivity.class);
 
         // Passage à l'Activity suivante (AddFoodItemActivity)
+        startActivity(intent);
+    }
+
+    public void goToBasket(View view){
+        // Appel à BasketActivity
+        Intent intent = new Intent(this, BasketActivity.class);
+
+        // Passage à l'Activity suivante (BasketActivity)
         startActivity(intent);
     }
 }

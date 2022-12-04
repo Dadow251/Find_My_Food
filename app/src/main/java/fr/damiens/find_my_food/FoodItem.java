@@ -4,6 +4,8 @@ import static android.content.ContentValues.TAG;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 public class FoodItem {
 
     private String name;
@@ -68,6 +70,7 @@ public class FoodItem {
         Log.d(TAG, "///" + description + ", " + price + ", " + market);
     }
 
+    @NonNull
     public String toString(){
         return name + "///" + description + "///" + price + "///" + market + "///" + url;
     }

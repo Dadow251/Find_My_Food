@@ -60,7 +60,7 @@ public class ListActivity extends AppCompatActivity {
                         intent.putExtra(Intent.EXTRA_TEXT, touchedItemName);
                         startActivity(intent);
                     }
-                }));
+                }, true, false));
 
         // Message de recherche
         Intent intent = getIntent();
@@ -102,8 +102,6 @@ public class ListActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
     }
