@@ -76,8 +76,8 @@ public class ItemActivity extends AppCompatActivity {
                         .load(itemURL)
                         .skipMemoryCache(true)
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .error(R.drawable.ic_launcher_background)
-                        .placeholder(R.drawable.ic_launcher_background)
+                        .error(R.drawable.no_image_icon)
+                        .placeholder(R.drawable.no_image_icon)
                         .centerCrop()
                         .into(new BitmapImageViewTarget(imageImageView) {
                             @Override

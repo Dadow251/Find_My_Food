@@ -66,8 +66,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ItemViewHolder> {
                 .load(foodItem.getUrl())
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .error(R.drawable.ic_launcher_background)
-                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.no_image_icon)
+                .placeholder(R.drawable.no_image_icon)
                 .centerCrop()
                 .into(new BitmapImageViewTarget(holder.productImage) {
                     @Override
