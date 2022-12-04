@@ -132,6 +132,6 @@ public class ItemActivity extends AppCompatActivity {
             editor.putStringSet("savedBasket", set);
         }
         editor.commit();
-        Toast.makeText(this, name + " a été ajouté à votre panier", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, name.split("_")[0] + " a été ajouté à votre panier", Toast.LENGTH_SHORT).show();
     }
 }

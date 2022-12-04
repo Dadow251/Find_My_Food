@@ -10,25 +10,41 @@
         android:id="@+id/marketNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/marketName"
+        android:text="@string/marketName2"
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/priceNameTextView"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/priceNameTextView"
+        app:layout_constraintStart_toStartOf="@+id/descriptionDisplay"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.261" />
 
     <TextView
-        android:id="@+id/priceDisplay"
+        android:id="@+id/priceNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/noData"
-        app:layout_constraintBottom_toBottomOf="@+id/priceNameTextView"
+        android:text="@string/priceName2"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
-        app:layout_constraintStart_toEndOf="@+id/marketNameTextView"
-        app:layout_constraintTop_toTopOf="@+id/priceNameTextView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/descriptionDisplay"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.202" />
+
+    <TextView
+        android:id="@+id/descriptionDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="false"
+        android:text="@string/noData"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/priceNameTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.496" />
 
     <TextView
         android:id="@+id/marketDisplay"
@@ -37,46 +53,22 @@
         android:text="@string/noData"
         app:layout_constraintBottom_toBottomOf="@+id/marketNameTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toEndOf="@+id/marketNameTextView"
         app:layout_constraintTop_toTopOf="@+id/marketNameTextView"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/descriptionDisplay"
+        android:id="@+id/priceDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/noData"
-        app:layout_constraintBottom_toBottomOf="@+id/descriptionNameTextView"
+        app:layout_constraintBottom_toBottomOf="@+id/priceNameTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
-        app:layout_constraintStart_toEndOf="@+id/marketNameTextView"
-        app:layout_constraintTop_toTopOf="@+id/descriptionNameTextView"
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintStart_toEndOf="@+id/priceNameTextView"
+        app:layout_constraintTop_toTopOf="@+id/priceNameTextView"
         app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/descriptionNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/descriptionName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.192"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.143" />
-
-    <TextView
-        android:id="@+id/priceNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/priceName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/descriptionNameTextView"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/descriptionNameTextView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.202" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -94,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="update"
-        android:text="Modifier"
+        android:text="@string/modifyButtonText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.906"
@@ -107,7 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="addToBasket"
-        android:text="Ajouter"
+        android:text="@string/addToBasketButtonText"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="1.0"

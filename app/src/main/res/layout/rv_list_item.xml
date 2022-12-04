@@ -8,9 +8,10 @@
 
     <TextView
         android:id="@+id/descriptionTextView"
-        android:layout_width="241dp"
-        android:layout_height="39dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:padding="10dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/marketTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -19,33 +20,65 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/priceTextView"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/priceHintTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:padding="10dp"
+        android:text="@string/priceNameShort"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/priceTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.327"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/foodImageView"
+        app:layout_constraintTop_toTopOf="@+id/priceTextView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/priceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/marketTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/priceHintTextView"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/marketHintTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:text="@string/marketName2"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/marketTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/foodImageView"
+        app:layout_constraintTop_toTopOf="@+id/marketTextView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/marketTextView"
-        android:layout_width="142dp"
-        android:layout_height="39dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/marketHintTextView"
+        app:layout_constraintTop_toBottomOf="@+id/priceTextView"
+        app:layout_constraintBottom_toBottomOf="@+id/foodImageView"/>
 
     <ImageView
         android:id="@+id/foodImageView"
-        android:layout_width="102dp"
-        android:layout_height="69dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         app:layout_constraintBottom_toBottomOf="@+id/priceTextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.555" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

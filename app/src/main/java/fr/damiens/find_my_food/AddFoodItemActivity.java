@@ -49,7 +49,7 @@ public class AddFoodItemActivity extends AppCompatActivity {
 
 
         // Récupération des informations de l'article à ajouter
-        String aliment = editAliment.getText().toString();
+        String aliment = editAliment.getText().toString().replace(" ","_");
         String description = editDescription.getText().toString();
         Double price = Double.parseDouble(editPrice.getText().toString());
         String market = editMarket.getText().toString();

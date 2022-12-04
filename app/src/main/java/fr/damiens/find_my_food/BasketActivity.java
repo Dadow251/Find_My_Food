@@ -61,9 +61,10 @@ public class BasketActivity extends AppCompatActivity {
             @Override
             public void onItemTouch(View view, int position) {
                 String touchedItemName = data.get(position).getName();
+                String touchedItemNameShort = touchedItemName.split("_")[0];
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(BasketActivity.this);
-                builder.setMessage("Voulez-vous supprimer cet aliment de votre panier ?")
+                builder.setMessage("Voulez-vous supprimer \'" + touchedItemNameShort + "\' de votre panier ?")
                         .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                             // Modification du prix et de l'image de l'aliment
                             @Override

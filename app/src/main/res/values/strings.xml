@@ -2,12 +2,22 @@
     <string name="appName">Find My Food</string>
     <string name="searchBarText">Entrez le nom d\'un produit</string>
     <string name="searchButtonText">Rechercher</string>
+    <string name="updateButtonText">Mettre à jour</string>
+    <string name="sendButtonText">Envoyer</string>
+    <string name="addButtonText">Ajouter</string>
+    <string name="addToBasketButtonText">Ajouter au panier</string>
+    <string name="modifyButtonText">Modifier</string>
     <string name="descriptionName">Description détaillée</string>
     <string name="priceName">Prix (en €)</string>
     <string name="marketName">Supermarché</string>
-    <string name="noData">N/A</string>
     <string name="itemName">Description courte</string>
     <string name="urlName">Adresse URL de l\'image</string>
+    <string name="descriptionName2">Description détaillée :</string>
+    <string name="priceName2">Prix (en €) :</string>
+    <string name="marketName2">Supermarché :</string>
+    <string name="itemName2">Description courte :</string>
+    <string name="priceNameShort">Prix :</string>
+    <string name="noData">N/A</string>
     <string name="savedBasket">savedBasket</string>
     <string name="savedList">savedList</string>
 </resources>
