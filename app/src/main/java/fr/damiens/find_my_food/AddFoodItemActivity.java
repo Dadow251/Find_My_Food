@@ -25,9 +25,6 @@ import java.util.Arrays;
 import java.util.Locale;
 
 public class AddFoodItemActivity extends AppCompatActivity {
-    // nom de l'aliment
-    public static String name;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,15 +81,16 @@ public class AddFoodItemActivity extends AppCompatActivity {
         }
 
         url = editURL.getText().toString();
+        String name;
 
         // Lecture et écriture dans la base de données
         dbRef.addValueEventListener(new ValueEventListener() {
+            String name = aliment + "_0";
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 String[] keyWordsSearch = description.toLowerCase().split(" ");
                 boolean article_exists = false;
-                name =aliment+"_0";
 
                 for(DataSnapshot article : dataSnapshot.getChildren()) {
                     String value = article.child("market").getValue(String.class);
