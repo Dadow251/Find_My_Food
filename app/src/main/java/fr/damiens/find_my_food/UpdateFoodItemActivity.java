@@ -36,8 +36,13 @@ public class UpdateFoodItemActivity extends AppCompatActivity {
         boolean urlIsEmpty = false;
         double priceUpdate = 0;
         String urlUpdate = "";
-        if(priceTxt.length() > 0)
+        if(priceTxt.length() > 0){
             priceUpdate = Double.parseDouble(priceTxt.getText().toString());
+            if(Double.parseDouble(priceTxt.getText().toString()) < 0) {
+                Toast.makeText(this, "Le prix ne peut pas être négatif", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
         else{
             priceIsEmpty = true;
         }

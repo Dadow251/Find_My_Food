@@ -95,6 +95,9 @@ public class ListActivity extends AppCompatActivity {
                             }
                         }
                     }
+                    if(name == null || description == null || price < 0 || market == null){
+                        continue;
+                    }
                     if(nbSim > 0) // sensibilité de la reconnaissance
                         data.add(foodItem); // W : liste vide en dehors de la classe
                 }

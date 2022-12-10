@@ -73,6 +73,10 @@ public class AddFoodItemActivity extends AppCompatActivity {
 
         if(editPrice.length() > 0) {
             price = Double.parseDouble(editPrice.getText().toString());
+            if(Double.parseDouble(editPrice.getText().toString()) < 0){
+                Toast.makeText(this, "Le prix ne peut pas être négatif", Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
         else{
             Toast.makeText(this, "Des champs obligatoires sont vides", Toast.LENGTH_SHORT).show();
@@ -147,9 +151,7 @@ public class AddFoodItemActivity extends AppCompatActivity {
 
     void addToDatabase(boolean exists, String name){
         // Création de l'aliment dans la base de donnée
-        Log.d(TAG, "!!! addToDatabase : exists = " + exists);
         if(!exists){
-            Log.d(TAG, "!!! " + name + " | " + description + " | " + price + " | " + market + " | " + url + " | ");
             dbRef.child(name).child("description").setValue(description);
             dbRef.child(name).child("price").setValue(price);
             dbRef.child(name).child("market").setValue(market);
@@ -169,8 +171,6 @@ public class AddFoodItemActivity extends AppCompatActivity {
         }
         // Demande de modification de l'aliment dans la base de donnée à l'utilisateur
         else{
-            Log.d(TAG, "!!! AlertDialog");
-
             AlertDialog.Builder builder = new AlertDialog.Builder(AddFoodItemActivity.this);
             builder.setMessage("Cet aliment existe déjà dans la base de données. Voulez-vous modifier cet aliment?")
                     .setPositiveButton("Oui je veux", new DialogInterface.OnClickListener() {

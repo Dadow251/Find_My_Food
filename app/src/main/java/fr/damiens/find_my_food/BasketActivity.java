@@ -127,6 +127,11 @@ public class BasketActivity extends AppCompatActivity {
                             String market = article.child("market").getValue(String.class);
                             String url = article.child("url").getValue(String.class);
                             FoodItem foodItem = new FoodItem(name, description, price, market, url);
+
+                            if(name == null || description == null || price < 0 || market == null){
+                                continue;
+                            }
+
                             data.add(foodItem);
                         }
                         rvAdapter.notifyDataSetChanged();
