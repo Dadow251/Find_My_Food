@@ -80,7 +80,7 @@ public class AddFoodItemActivity extends AppCompatActivity {
         }
 
         if(editMarket.length() > 0){
-            market = editMarket.getText().toString();
+            market = editMarket.getText().toString().replace(" ", "");
         }
         else{
             Toast.makeText(this, "Des champs obligatoires sont vides", Toast.LENGTH_SHORT).show();
