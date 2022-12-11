@@ -110,20 +110,18 @@ public class AddFoodItemActivity extends AppCompatActivity {
                     String marketValue = article.child("market").getValue(String.class);
                     String[] keyWordsDescription = article.child("description").getValue(String.class).toLowerCase().split(" ");
                     int matchingWords = 0;
-                    if(article.getKey().toLowerCase().contains(aliment.toLowerCase())) {
-                        if (marketValue.toLowerCase().equals(market.toLowerCase())) { /// à split pour mots composés
-                            for (String s : keyWordsSearch) {
-                                for (String r : keyWordsDescription) {
-                                    if (s.equals(r)) {
-                                        matchingWords += 1;
-                                    }
+                    if (marketValue.toLowerCase().equals(market.toLowerCase())) { /// à split pour mots composés
+                        for (String s : keyWordsSearch) {
+                            for (String r : keyWordsDescription) {
+                                if (s.equals(r)) {
+                                    matchingWords += 1;
                                 }
                             }
-                            if (matchingWords == keyWordsDescription.length) {
-                                articleExists = true;
-                                existsInDatabase = true;
-                                name = article.getKey();
-                            }
+                        }
+                        if (matchingWords == keyWordsDescription.length) {
+                            articleExists = true;
+                            existsInDatabase = true;
+                            name = article.getKey();
                         }
                     }
 
