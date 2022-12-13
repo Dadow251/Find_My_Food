@@ -170,7 +170,7 @@ public class AddFoodItemActivity extends AppCompatActivity {
         // Demande de modification de l'aliment dans la base de donnée à l'utilisateur
         else{
             AlertDialog.Builder builder = new AlertDialog.Builder(AddFoodItemActivity.this);
-            builder.setMessage("Cet aliment existe déjà dans la base de données. Voulez-vous modifier cet aliment?")
+            builder.setMessage("Cet aliment existe déjà dans la base de données. Voulez-vous le modifier ?")
                     .setPositiveButton("Oui je veux", new DialogInterface.OnClickListener() {
                         // Modification du prix et de l'image de l'aliment
                         @Override
@@ -192,7 +192,7 @@ public class AddFoodItemActivity extends AppCompatActivity {
                     .setNegativeButton("Non je ne veux pas", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            Toast.makeText(AddFoodItemActivity.this,"Base de données non modifiée", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddFoodItemActivity.this,"Ajout de l'article annulé", Toast.LENGTH_SHORT).show();
                         }
                     });
             builder.create().show();

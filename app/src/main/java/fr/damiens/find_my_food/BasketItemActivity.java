@@ -122,7 +122,7 @@ public class BasketItemActivity extends AppCompatActivity {
         String name = getIntent().getStringExtra(Intent.EXTRA_TEXT);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(BasketItemActivity.this);
-        builder.setMessage("Voulez-vous supprimer \'" + name + "\' de votre panier ?")
+        builder.setMessage("Voulez-vous supprimer \'" + name.split("_")[0] + "\' de votre panier ?")
                 .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                     // Modification du prix et de l'image de l'aliment
                     @Override
