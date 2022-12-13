@@ -90,7 +90,7 @@ public class ListActivity extends AppCompatActivity {
                         String[] keyWordsResult = description.toLowerCase().split(" ");
                         for (String s : keyWordsSearch) {
                             for (String r : keyWordsResult) {
-                                if (s.equals(r))
+                                if (r.contains(s))
                                     nbSim++;
                             }
                         }
